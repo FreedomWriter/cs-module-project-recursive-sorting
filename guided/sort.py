@@ -104,3 +104,42 @@ print("Insertion Sort took:  " + str((end - start)*1000) + " milliseconds")
 # sorted_books = book_sort(my_books_long)
 # end = time.time()
 # print("Book Sort took:       " + str((end - start)*1000) + " milliseconds\n")
+
+import time
+# [5,9,3,7,2,8,1,6]
+# Chose a pivot
+#     take first number in list - 5
+# Move all elements smaller than pivot, to the left of the pivot
+# Move all elements larger than pivot, to the right of pivot
+# [3,2,1][5][9,7,8,9]
+# Repeat the process on the two new arrays (left and right) - the pivot is where it's supposed to be
+# arrays of one are the base case - they are sorted
+#     each recursive call get the arrays they return combined and then returned
+
+def partition_numbers(numbers):
+    # this function breaks numbers into a left, pivot, and right
+    left = []
+    pivot = numbers[0]
+    right = []
+
+    # partition the numbers correctly into left and right arrays
+        # starting loop at second index so that pivot does not get included in left or right sides
+    for num in numbers[1:]:
+        if num <= pivot:
+            left.append(num)
+        else:
+            right.append(num)
+
+    return left, pivot, right
+
+def quick_sort_Art(numbers):
+    # base case
+    if len(numbers) <= 1:
+        return numbers
+
+    left, pivot, right = partition_numbers(numbers)
+
+    return quick_sort_Art(left) + [pivot] + quick_sort_Art(right)
+    
+
+print(quick_sort_Art([5,9,3,7,2,8,1,6]))

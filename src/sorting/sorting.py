@@ -9,13 +9,99 @@ def merge(arrA, arrB):
     return merged_arr
 
 # print(merge([1,2,3], ['a', 'b', 'c']))
+# def merge_helper(a, b):
+#     sorted = []
+#     ai = 0
+#     bi = 0
+#     count = len(a) + len(b)
+#     while len(sorted) < count:
+#         if ai >= len(a):
+#             sorted.append(b[bi])
+#             bi += 1
+#         elif bi >= len(b):
+#             sorted.append(a[ai])
+#             ai += 1
+#         elif a[ai] < b[bi]:
+#             sorted.append(a[ai])
+#             ai += 1
+#         elif a[ai] >= b[bi]:
+#             sorted.append(b[bi])
+#             bi += 1
+#     print(f"count - {count}")
+#     print(f"ai - {ai}")
+#     print(f"bi - {bi}")
+#     print(sorted)
+#     return sorted
+# # TO-DO: implement the Merge Sort function below recursively
+# def merge_sort(arr):
 
-# TO-DO: implement the Merge Sort function below recursively
+#     if len(arr) == 0:
+#         return None
+
+#     # base case
+#     if len(arr) == 1:
+#         return arr
+    
+#     #recursive
+#     else:
+#         # divide 'arr' into a LHS and a RHS
+#         #### find the middle and define LHS, RHS
+#         middle = len(arr)  //2
+#         LHS= arr[:middle]
+#         RHS = arr[middle:]
+#         # print(LHS)
+#         # print(RHS)
+#         merge_sort(LHS)
+#         merge_sort(RHS)
+#         arr = merge_helper(LHS, RHS)
+
+
+#         return arr
+
 def merge_sort(arr):
-    # Your code here
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        LHS = arr[:mid]
+        RHS = arr[mid:]
 
+        # Recursive call on each half
+        merge_sort(LHS)
+        merge_sort(RHS)
 
+        # Two iterators for traversing the two halves
+        right_i = 0
+        left_i = 0
+        
+        # Iterator for the main list
+        main_i = 0
+        
+        while right_i < len(LHS) and left_i < len(RHS):
+            if LHS[right_i] < RHS[left_i]:
+              # The value from the LHS half has been used
+              arr[main_i] = LHS[right_i]
+              # Move the iterator forward
+              right_i += 1
+            else:
+                arr[main_i] = RHS[left_i]
+                left_i += 1
+            # Move to the next slot
+            main_i += 1
+
+        # For all the remaining values
+        while right_i < len(LHS):
+            arr[main_i] = LHS[right_i]
+            right_i += 1
+            main_i += 1
+
+        while left_i < len(RHS):
+            arr[main_i]=RHS[left_i]
+            left_i += 1
+            main_i += 1
     return arr
+
+my_list = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
+print(merge_sort(my_list))
+# print(my_list)
 
 # STRETCH: implement the recursive logic for merge sort in a way that doesn't 
 # utilize any extra memory
@@ -30,42 +116,5 @@ def merge_sort_in_place(arr, l, r):
     # Your code here
     pass
 
-import time
-# [5,9,3,7,2,8,1,6]
-# Chose a pivot
-    # take first number in list - 5
-# Move all elements smaller than pivot, to the left of the pivot
-# Move all elements larger than pivot, to the right of pivot
-# [3,2,1][5][9,7,8,9]
-# Repeat the process on the two new arrays (left and right) - the pivot is where it's supposed to be
-# arrays of one are the base case - they are sorted
-    # each recursive call get the arrays they return combined and then returned
 
-# def partition_numbers(numbers):
-#     # this function breaks numbers into a left, pivot, and right
-#     left = []
-#     pivot = numbers[0]
-#     right = []
-
-#     # partition the numbers correctly into left and right arrays
-#         # starting loop at second index so that pivot does not get included in left or right sides
-#     for num in numbers[1:]:
-#         if num <= pivot:
-#             left.append(num)
-#         else:
-#             right.append(num)
-
-#     return left, pivot, right
-
-# def quick_sort_Art(numbers):
-#     # base case
-#     if len(numbers) <= 1:
-#         return numbers
-
-#     left, pivot, right = partition_numbers(numbers)
-
-#     return quick_sort_Art(left) + [pivot] + quick_sort_Art(right)
-    
-
-# print(quick_sort_Art([5,9,3,7,2,8,1,6]))
     
