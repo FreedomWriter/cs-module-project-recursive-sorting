@@ -46,9 +46,9 @@ def merge(arrA, arrB):
 #     else:
 #         # divide 'arr' into a LHS and a RHS
 #         #### find the middle and define LHS, RHS
-#         middle = len(arr)  //2
-#         LHS= arr[:middle]
-#         RHS = arr[middle:]
+        # middle = len(arr)  //2
+        # LHS= arr[:middle]
+        # RHS = arr[middle:]
 #         # print(LHS)
 #         # print(RHS)
 #         merge_sort(LHS)
